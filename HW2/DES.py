@@ -41,7 +41,7 @@ def Ffunction(R,key):
     expansion_R = ''
     E = [32,1,2,3,4,5,4,5,6,7,8,9,8,9,10,11,12,13,12,13,14,15,16,17,16,17,18,19,20,21,20,21,22,23,24,25,24,25,26,27,28,29,28,29,30,31,32,1]
     for i in E:
-        expansion_R += key[i]
+        expansion_R += R[i-1]
     R_XOR_key = bin(int(expansion_R,2)^int(key,2))[2:].zfill(len(key))
     S_value = Sbox(R_XOR_key)
     P = [16,7,20,21,29,12,28,17,1,15,23,26,5,18,31,10,2,8,24,14,32,27,3,9,19,13,30,6,22,11,4,25]
@@ -71,6 +71,7 @@ def Sbox(input):
 
 def round(input,key):
     key_round = key_sech(key)
+    input = IP(input)
     for i in range(16):
         L = input[:32]
         R = input[32:]
@@ -90,18 +91,18 @@ number = input('Please input number system(2,8,16)： ')
 if(number=='2'):
     plaintext = input('Please input plaintext(64bit)： ')
     key = input('Please input key(64bit)： ')
-    print(round(plaintext,key))
+    print(hex(int(round(plaintext,key),2)))
 elif(number=='8'):
     plaintext = input('Please input plaintext(64bit)： ')
     key = input('Please input key(64bit)： ')
     plaintext = bin(int(plaintext,8))[2:].zfill(64)
     key = bin(int(key,8))[2:].zfill(64)
-    print(round(plaintext,key))
+    print(hex(int(round(plaintext,key),2)))
 elif(number=='16'):
     plaintext = input('Please input plaintext(64bit)： ')
     key = input('Please input key(64bit)： ')
     plaintext = bin(int(plaintext,16))[2:].zfill(64)
     key = bin(int(key,16))[2:].zfill(64)
-    print(round(plaintext,key))
+    print(hex(int(round(plaintext,key),2)))
 else:
     print('error')
