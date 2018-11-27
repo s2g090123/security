@@ -47,7 +47,8 @@ def CRT(D,P1,P2,Cipher):
     Dp = D % (P1-1)
     Dq = D % (P2-1)
     (Xq,_,_) = ext_GCD(P2,P1)
-    return (Xq*P2*(square_mul(Cipher,bin(Dp)[2:],P1))+(1-Xq*P2)*(square_mul(Cipher,bin(Dq)[2:],P2))) % (P1*P2)
+    (Xp,_,_) = ext_GCD(P1,P2)
+    return (Xq*P2*(square_mul(Cipher,bin(Dp)[2:],P1))+(Xp*P1)*(square_mul(Cipher,bin(Dq)[2:],P2))) % (P1*P2)
 def RSA_GO(P1,P2,text):
     N = P1*P2
     PHI = (P1-1)*(P2-1)
