@@ -50,6 +50,8 @@ def CRT(D,P1,P2,Cipher):                    # x^y mod N can split to x^y mod p a
     (Xp,_,_) = ext_GCD(P1,P2)               # watch https://www.youtube.com/watch?v=6ytuvahX1tQ
     return (Xq*P2*(square_mul(Cipher,bin(Dp)[2:],P1))+(Xp*P1)*(square_mul(Cipher,bin(Dq)[2:],P2))) % (P1*P2)
 def RSA_GO(P1,P2,text):
+    print(P1)
+    print(P2)
     N = P1*P2
     PHI = (P1-1)*(P2-1)
     for i in range(2,PHI):
