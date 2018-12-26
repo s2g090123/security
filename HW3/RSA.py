@@ -1,5 +1,5 @@
 from fractions import gcd
-import random #123
+import random
 
 
 def miller_rabin(N,validate_count):         # watch https://www.youtube.com/watch?v=qdylJqXCDGs
